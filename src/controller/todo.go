@@ -1,11 +1,13 @@
 package controller
 
 import (
+	"log"
+
 	model "github.com/wei840222/todo-api/model"
 
 	"encoding/json"
 	"net/http"
-	
+
 	"github.com/globalsign/mgo/bson"
 	"github.com/gorilla/mux"
 )
@@ -19,6 +21,7 @@ func responseWithJson(w http.ResponseWriter, code int, payload interface{}) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(code)
 	w.Write(response)
+	log.Printf("code: %d  payload: %s", code, payload)
 }
 
 func AllTodo(w http.ResponseWriter, r *http.Request) {

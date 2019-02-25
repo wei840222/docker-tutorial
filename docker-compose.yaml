@@ -1,0 +1,40 @@
+version: '3.7'
+
+services:
+  portainer:
+    image: portainer/portainer
+    ports:
+      - 9000:9000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+
+  mongo:
+    image: mongo
+    volumes:
+      - mongo_data:/data/db
+
+  mongoclient:
+    image: mongoclient/mongoclient
+    ports:
+      - 3000:3000
+    volumes:
+      - mongoclient_data:/data/db
+    links:
+      - mongo
+    depends_on:
+      - mongo
+
+  api:
+    build: ./src
+    ports:
+      - 8080:8080
+    links:
+      - mongo
+    depends_on:
+      - mongo
+    
+volumes:
+  portainer_data:
+  mongo_data:
+  mongoclient_data:

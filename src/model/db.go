@@ -7,8 +7,8 @@ import (
 )
 
 const (
-	host   = "127.0.0.1:27017"
-	source = "admin"
+	host   = "mongo:27017"
+	source = "todo"
 	user   = ""
 	pass   = ""
 )
