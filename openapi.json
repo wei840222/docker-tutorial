@@ -1,0 +1,89 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "An api for todo list.",
+    "version": "0.0.1-SNAPSHOT",
+    "title": "todo"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080/"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "todo": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "todo"
+    }
+  ],
+  "paths": {
+    "/todo": {
+      "get": {
+        "tags": [
+          "todo"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "example": {
+                  "id": "5c749d01a8792300010ab385",
+                  "name": "晚餐",
+                  "description": "黑美林"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "todo"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/todo"
+              },
+              "example": {
+                "name": "晚餐",
+                "description": "黑美林"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "example": {
+                  "id": "5c749d01a8792300010ab385",
+                  "name": "晚餐",
+                  "description": "黑美林"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

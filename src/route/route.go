@@ -18,6 +18,7 @@ type Route struct {
 var routes []Route
 
 func init() {
+	register("OPTIONS", "/todo", controller.OPTIONS, nil)
 	register("GET", "/todo", controller.AllTodo, nil)
 	register("GET", "/todo/{id}", controller.FindTodo, nil)
 	register("POST", "/todo", controller.CreateTodo, nil)
